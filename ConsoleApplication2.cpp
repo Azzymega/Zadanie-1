@@ -8,7 +8,7 @@ private:
     int age;
 public:
     Person() {
-        fullName = "Undefined";
+        fullName = "Неопределено";
         age = 0;
     }
     Person(int a, string n) {
