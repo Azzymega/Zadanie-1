@@ -82,6 +82,38 @@ public:
     }
 };
 
+enum Seasons {
+    spring = 0,
+    summer = 1,
+    autumn = 2,
+    winter = 3,
+    springTemperature = 10,
+    summerTemperature = 30,
+    autumnTemperature = 5,
+    winterTemperature = -30
+};
+string returnString(Seasons season) {
+    switch (season) {
+    case 0: return "Я люблю весну";
+    case 1: return "Я люблю лето";
+    case 2: return "Я люблю осень";
+    case 3: return "Я люблю зиму";
+    }
+}
+string returnString(Seasons season, Seasons temperature) {
+    switch (season) {
+    case 0: return "Я люблю весну";
+    case 1: return "Я люблю лето";
+    case 2: return "Я люблю осень";
+    case 3: return "Я люблю зиму";
+    }
+}
+string getDescription(Seasons season) {
+    if (season == Seasons::summer) {
+        return "Тёплое время года";
+    }
+    return "Холодное время года";
+}
 int main()
 {
     Phone* firstPhone = new Phone();
@@ -106,5 +138,15 @@ int main()
     firstPeople->talk();
     secondPeople->move();
     secondPeople->talk();
+    Seasons summer = Seasons::summer;
+    cout << "\n";
+    cout << summer;
+    for (int i = 0; i < 9; i++) {
+        cout << static_cast<Seasons>(i);
+    }
+    cout << getDescription(Seasons::spring);
+    cout << getDescription(Seasons::summer);
+    cout << getDescription(Seasons::autumn);
+    cout << getDescription(Seasons::winter);
     return 0;
 }
