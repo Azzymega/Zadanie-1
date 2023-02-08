@@ -61,8 +61,6 @@ public:
     }
     Phone(int n, string m, int w) : Phone(n, m)
     {
-        number = n;
-        model = m;
         weight = w;
     }
     Phone(int n, string m)
