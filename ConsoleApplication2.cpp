@@ -38,15 +38,12 @@ public:
         cout << model;
         cout << weight;
     }
-    void sendMessage(int numberOfArguments, string number, ...)
+    void sendMessage(int numberOfArguments,string numbers[])
     {
-        string* num = &number;
         cout << "\nСообщение отправлено на данные номер(а) телефона(ов): ";
-        while (numberOfArguments > 0)
+        while (numberOfArguments >= 0)
         {
-            cout << num;
-            cout << " ";
-            num++;
+            cout << numbers[numberOfArguments];
             numberOfArguments--;
         }
     }
@@ -92,6 +89,14 @@ enum Seasons {
     autumnTemperature = 5,
     winterTemperature = -30
 };
+void middleTemperature(Seasons temp) {
+    switch (temp) {
+    case Seasons::autumnTemperature: cout << 5;
+    case Seasons::winterTemperature: cout << -30;
+    case Seasons::springTemperature: cout << 10;
+    case Seasons::summerTemperature: cout << 30;
+    }
+}
 string returnString(Seasons season) {
     switch (season) {
     case 0: return "Я люблю весну";
@@ -109,10 +114,23 @@ string returnString(Seasons season, Seasons temperature) {
     }
 }
 string getDescription(Seasons season) {
-    if (season == Seasons::summer) {
-        return "Тёплое время года";
+    switch (season)
+    {   
+    case spring:
+        return "Прекрасная весенная пора с средней температурой в 10 градусов. Растения начинают оживать после зимы.";
+        break;
+    case summer:
+        return "Прекрасная летняя пора с средней температурой в 30 градусов. Солнце обычно зноит и температура высокая.";
+        break;
+    case autumn:
+        return "Прекрасная осенняя пора с средней температурой в 5 градусов. Растения сбрасывают листву, увеличивается количество осадков и начинает холодать.";
+        break;
+    case winter:
+        return "Прекрасная зимняя пора с средней температурой в -30 градусов. Красивые снежные хлопья усыпают всё вокруг, очень холодно.";
+        break;
+    default:
+        break;
     }
-    return "Холодное время года";
 }
 int main()
 {
@@ -121,13 +139,14 @@ int main()
     Phone* otherPhone = new Phone();
     cout << firstPhone->getNumber();
     firstPhone->recieveCall("\nSanya");
-    firstPhone->sendMessage(2, "8800553535", "88007773737");
+    string numbers[] = {" 8800553535"," 88007773737"," 444444"};
+    firstPhone->sendMessage(2, numbers);
     cout << secondPhone->getNumber();
     secondPhone->recieveCall("\nSanya");
-    secondPhone->sendMessage(2, "8800553535", "88007773737");
+    secondPhone->sendMessage(2, numbers);
     cout << otherPhone->getNumber();
     otherPhone->recieveCall("\nSanya");
-    otherPhone->sendMessage(2, "8800553535", "88007773737");
+    otherPhone->sendMessage(2, numbers);
     firstPhone->printArgs();
     secondPhone->printArgs();
     otherPhone->printArgs();
@@ -141,9 +160,14 @@ int main()
     Seasons summer = Seasons::summer;
     cout << "\n";
     cout << summer;
-    for (int i = 0; i < 9; i++) {
-        cout << static_cast<Seasons>(i);
-    }
+    cout << Seasons::autumn;
+    cout << Seasons::autumnTemperature;
+    cout << Seasons::spring;
+    cout << Seasons::springTemperature;
+    cout << Seasons::autumn;
+    cout << Seasons::autumnTemperature;
+    cout << Seasons::winter;
+    cout << Seasons::winterTemperature;
     cout << getDescription(Seasons::spring);
     cout << getDescription(Seasons::summer);
     cout << getDescription(Seasons::autumn);
